@@ -9,6 +9,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
+
+import static jp.simplespace.lazeronigokko.LazerOnigokko.plugin;
 
 public class ParticleListener implements Listener {
 
@@ -20,11 +24,24 @@ public class ParticleListener implements Listener {
     public void onInteract(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         if (e.getAction().equals(Action.RIGHT_CLICK_AIR)&&e.getItem().getType().equals(Material.REDSTONE)){
-            Location loc = p.getEyeLocation().clone().add(p.getEyeLocation().getDirection());
-            for(int i=0;i<10;i++){
+            Vector vec = p.getEyeLocation().getDirection();
+            Location loc = p.getEyeLocation().clone().add(vec);
+            BukkitRunnable task = new BukkitRunnable(){
+                int count = 10;
+                public void run(){
+                    if(count>0){
+                        loc.add(vec);
+                        Lazer.spawnParticle(p.getWorld(),loc);
+                    }
+                    count--;
+                }
+            };
+            task.runTaskTimer(plugin,0L,2L);
+            /**for(int i=0;i<10;i++){
                 loc.add(p.getEyeLocation().getDirection());
                 Lazer.spawnParticle(p.getWorld(),loc);
             }
+             **/
         }
     }
 }
