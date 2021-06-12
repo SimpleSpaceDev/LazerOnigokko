@@ -5,6 +5,6 @@ import org.bukkit.*;
 public class Lazer {
     public static void spawnParticle(World world, Location loc){
         Particle.DustOptions dust = new Particle.DustOptions(Color.RED,1.6f);
-        world.spawnParticle(Particle.REDSTONE,loc,0,dust);
+        world.spawnParticle(Particle.REDSTONE,loc,1,dust);
     }
 }
