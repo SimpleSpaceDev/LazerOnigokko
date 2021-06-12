@@ -1,5 +1,5 @@
 name: LazerOnigokko
-version: @version@
+version: 1.0-SNAPSHOT
 main: jp.simplespace.lazeronigokko.LazerOnigokko
 api-version: 1.16
 authors: [ Matchan ]
