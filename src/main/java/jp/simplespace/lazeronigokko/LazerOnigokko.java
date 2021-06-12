@@ -13,5 +13,6 @@ public final class LazerOnigokko extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        getLogger().info("プラグインが去ったよ☆");
     }
 }
