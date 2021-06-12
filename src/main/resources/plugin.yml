@@ -1,0 +1,7 @@
+name: LazerOnigokko
+version: @version@
+main: jp.simplespace.lazeronigokko.LazerOnigokko
+api-version: 1.16
+authors: [ Matchan ]
+description: 謎のレーザー鬼ごっこ
+website: https://simplespace.jp
