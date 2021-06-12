@@ -33,10 +33,11 @@ public class ParticleListener implements Listener {
                         loc.add(vec);
                         Lazer.spawnParticle(p.getWorld(),loc);
                     }
+                    else this.cancel();
                     count--;
                 }
             };
-            task.runTaskTimer(plugin,0L,2L);
+            task.runTaskTimer(plugin,0L,1L);
             /**for(int i=0;i<10;i++){
                 loc.add(p.getEyeLocation().getDirection());
                 Lazer.spawnParticle(p.getWorld(),loc);
