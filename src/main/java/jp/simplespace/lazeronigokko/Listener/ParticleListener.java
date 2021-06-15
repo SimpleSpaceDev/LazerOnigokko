@@ -30,12 +30,20 @@ public class ParticleListener implements Listener {
                 int count = 50;
                 public void run(){
                     if(count>0){
-                        //空気以外
-                        if(!loc.getBlock().getType().equals(Material.AIR)){
-                            loc.add(vec.multiply(-1));
+                        switch (loc.getBlock().getType()){
+                            //水
+                            case WATER:
+                                this.cancel();
+                                break;
+                            //空気（無）
+                            case AIR:
+                                loc.add(vec);
+                                break;
+                            //空気以外（ブロックなど）
+                            default:
+                                loc.add(vec.multiply(-1));
+                                break;
                         }
-                        //空気
-                        else loc.add(vec);
                         Lazer.spawnParticle(p.getWorld(),loc);
                     }
                     else this.cancel();
