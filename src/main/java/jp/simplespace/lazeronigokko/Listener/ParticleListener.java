@@ -3,6 +3,7 @@ package jp.simplespace.lazeronigokko.Listener;
 import jp.simplespace.lazeronigokko.Util.Lazer;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.data.type.GlassPane;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -30,19 +31,16 @@ public class ParticleListener implements Listener {
                 int count = 50;
                 public void run(){
                     if(count>0){
-                        switch (loc.getBlock().getType()){
-                            //水
-                            case WATER:
-                                this.cancel();
-                                break;
-                            //空気（無）
-                            case AIR:
-                                loc.add(vec);
-                                break;
+                        Material type = loc.getBlock().getType();
+                        //水（レーザーが消える）
+                        if (type == Material.WATER) {
+                            this.cancel();
+                            //貫通(空気・ガラス)
+                        } else if (type == Material.AIR || type.name().contains("GLASS")) {
+                            loc.add(vec);
                             //空気以外（ブロックなど）
-                            default:
-                                loc.add(vec.multiply(-1));
-                                break;
+                        } else {
+                            loc.add(vec.multiply(-1));
                         }
                         Lazer.spawnParticle(p.getWorld(),loc);
                     }
