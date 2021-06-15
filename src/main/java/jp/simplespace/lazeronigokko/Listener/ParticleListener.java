@@ -27,10 +27,15 @@ public class ParticleListener implements Listener {
             Vector vec = p.getEyeLocation().getDirection();
             Location loc = p.getEyeLocation().clone().add(vec);
             BukkitRunnable task = new BukkitRunnable(){
-                int count = 10;
+                int count = 50;
                 public void run(){
                     if(count>0){
-                        loc.add(vec);
+                        //空気以外
+                        if(!loc.getBlock().getType().equals(Material.AIR)){
+                            loc.add(vec.multiply(-1));
+                        }
+                        //空気
+                        else loc.add(vec);
                         Lazer.spawnParticle(p.getWorld(),loc);
                     }
                     else this.cancel();
