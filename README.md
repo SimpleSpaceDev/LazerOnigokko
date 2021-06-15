@@ -29,8 +29,3 @@
 
 ### 提案者
 - [@narikakun](https://twitter.com/narikakun)
-
-### その他
-<!-- ~~非常食（は~~ -->
-- [@nekok500](https://twitter.com/nekok500)
-- [@Neko7sora](https://twitter.com/Neko7sora)
