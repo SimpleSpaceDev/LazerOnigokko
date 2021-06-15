@@ -5,3 +5,22 @@ api-version: 1.16
 authors: [ Matchan ]
 description: 謎のレーザー鬼ごっこ
 website: https://simplespace.jp
+commands:
+  setup:
+    description: セットアップを実行するコマンド
+    usage: /<command>
+    permission: lazeronigokko.command.setup
+permissions:
+  lazeronigokko.*:
+    description: すべての権限
+    default: op
+    children:
+      lazeronigokko.command.*: true
+  lazeronigokko.command.*:
+      description: コマンドのすべての権限
+      default: op
+      children:
+        lazeronigokko.command.setup: true
+  lazeronigokko.command.setup:
+        description: セットアップコマンドの権限
+        default: op

@@ -13,7 +13,8 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import static jp.simplespace.lazeronigokko.LazerOnigokko.plugin;
+import static jp.simplespace.lazeronigokko.LazerOnigokko.config;
+import static jp.simplespace.lazeronigokko.LazerOnigokko.getPlugin;
 
 public class ParticleListener implements Listener {
 
@@ -28,7 +29,7 @@ public class ParticleListener implements Listener {
             Vector vec = p.getEyeLocation().getDirection();
             Location loc = p.getEyeLocation().clone().add(vec);
             BukkitRunnable task = new BukkitRunnable(){
-                int count = 50;
+                int count = config.getInt("lazer.distance",50);
                 public void run(){
                     if(count>0){
                         Material type = loc.getBlock().getType();
@@ -48,7 +49,7 @@ public class ParticleListener implements Listener {
                     count--;
                 }
             };
-            task.runTaskTimer(plugin,0L,1L);
+            task.runTaskTimer(getPlugin(),0L,1L);
             /**for(int i=0;i<10;i++){
                 loc.add(p.getEyeLocation().getDirection());
                 Lazer.spawnParticle(p.getWorld(),loc);
