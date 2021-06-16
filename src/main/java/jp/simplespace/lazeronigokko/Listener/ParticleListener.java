@@ -28,7 +28,7 @@ public class ParticleListener implements Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
         Player p = e.getPlayer();
-        if (e.getAction().equals(Action.RIGHT_CLICK_AIR)&&e.getItem().getType().equals(Material.REDSTONE)){
+        if (e.getAction().equals(Action.RIGHT_CLICK_AIR)&&e.getItem().getType().equals(Material.RED_DYE)||e.getItem().getType().equals(Material.REDSTONE)){
             Vector vec = p.getEyeLocation().getDirection();
             Location loc = p.getEyeLocation().clone().add(vec);
             BukkitRunnable task = new BukkitRunnable(){
