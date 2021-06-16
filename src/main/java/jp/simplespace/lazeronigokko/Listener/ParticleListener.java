@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.data.type.GlassPane;
+import org.bukkit.block.data.type.TNT;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,6 +28,7 @@ public class ParticleListener implements Listener {
     public void onInteract(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         if (e.getAction().equals(Action.RIGHT_CLICK_AIR)&&e.getItem().getType().equals(Material.RED_DYE)||e.getItem().getType().equals(Material.REDSTONE)){
+            e.setCancelled(true);
             Vector vec = p.getEyeLocation().getDirection();
             Location loc = p.getEyeLocation().clone().add(vec);
             BukkitRunnable task = new BukkitRunnable(){
@@ -41,7 +43,7 @@ public class ParticleListener implements Listener {
                             //貫通(空気・ガラス)
                         } else if (type == Material.AIR || type.name().contains("GLASS")) {
                             loc.add(vec);
-                            //空気以外（ブロックなど）
+                            //空気以外（ブロックなど）ブロックにあたったら
                         } else {
                             loc.add(vec.multiply(-1));
                         }
@@ -53,9 +55,11 @@ public class ParticleListener implements Listener {
                                 //クリーパーだったら
                                 if(livingEntity instanceof Creeper){
                                     Creeper creeper = (Creeper) livingEntity;
+                                    creeper.setHealth(creeper.getHealth()+5);
                                     creeper.ignite();
                                 }
                             }
+                            this.cancel();
                         }
                         Lazer.spawnParticle(p.getWorld(),loc);
                     }
