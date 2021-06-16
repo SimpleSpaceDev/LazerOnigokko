@@ -5,9 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.data.type.GlassPane;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -52,6 +50,11 @@ public class ParticleListener implements Listener {
                             if(entity instanceof LivingEntity){
                                 LivingEntity livingEntity = (LivingEntity) entity;
                                 livingEntity.damage(5);
+                                //クリーパーだったら
+                                if(livingEntity instanceof Creeper){
+                                    Creeper creeper = (Creeper) livingEntity;
+                                    creeper.ignite();
+                                }
                             }
                         }
                         Lazer.spawnParticle(p.getWorld(),loc);
