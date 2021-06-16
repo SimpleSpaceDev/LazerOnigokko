@@ -3,7 +3,10 @@ package jp.simplespace.lazeronigokko.Listener;
 import jp.simplespace.lazeronigokko.Util.Lazer;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.data.type.GlassPane;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -30,6 +33,7 @@ public class ParticleListener implements Listener {
             Location loc = p.getEyeLocation().clone().add(vec);
             BukkitRunnable task = new BukkitRunnable(){
                 int count = config.getInt("lazer.distance",50);
+                final World world = p.getWorld();
                 public void run(){
                     if(count>0){
                         Material type = loc.getBlock().getType();
@@ -42,6 +46,13 @@ public class ParticleListener implements Listener {
                             //空気以外（ブロックなど）
                         } else {
                             loc.add(vec.multiply(-1));
+                        }
+                        //もしMobに当たったら
+                        for (Entity entity : world.getNearbyEntities(loc,1,1,1)){
+                            if(entity instanceof LivingEntity){
+                                LivingEntity livingEntity = (LivingEntity) entity;
+                                livingEntity.damage(5);
+                            }
                         }
                         Lazer.spawnParticle(p.getWorld(),loc);
                     }
