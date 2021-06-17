@@ -1,7 +1,7 @@
 package jp.simplespace.lazeronigokko;
 
 import jp.simplespace.lazeronigokko.Commands.Setup;
-import jp.simplespace.lazeronigokko.Listener.ParticleListener;
+import jp.simplespace.lazeronigokko.Listener.NormalLazerListener;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -26,7 +26,7 @@ public final class LazerOnigokko extends JavaPlugin {
         //コマンドタブ補完登録
         getCommand("setup").setTabCompleter(new Setup());
         //リスナー登録
-        getServer().getPluginManager().registerEvents(new ParticleListener(),this);
+        getServer().getPluginManager().registerEvents(new NormalLazerListener(),this);
         getLogger().info("プラグインを読み込んだよ☆");
     }
 
