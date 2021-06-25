@@ -42,7 +42,7 @@ public class Gui implements CommandExecutor, TabCompleter {
     private static String getHelp(){
         StringBuilder text = new StringBuilder();
         text.append(ChatColor.BOLD+"ヘルプ\n");
-        text.append("/gui gunselect");
+        text.append(ChatColor.RESET+"/gui gunselect");
         return text.toString();
     }
 
