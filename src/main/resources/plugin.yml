@@ -10,6 +10,10 @@ commands:
     description: セットアップを実行するコマンド
     usage: /<command>
     permission: lazeronigokko.command.setup
+  gui:
+    description: GUIを開くコマンド
+    usage: /<command> <GUI名>
+    permission: lazeronigokko.command.gui
 permissions:
   lazeronigokko.*:
     description: すべての権限
@@ -17,10 +21,14 @@ permissions:
     children:
       lazeronigokko.command.*: true
   lazeronigokko.command.*:
-      description: コマンドのすべての権限
-      default: op
-      children:
-        lazeronigokko.command.setup: true
+    description: コマンドのすべての権限
+    default: op
+    children:
+      lazeronigokko.command.setup: true
+      lazeronigokko.command.gui: true
   lazeronigokko.command.setup:
-        description: セットアップコマンドの権限
-        default: op
+    description: セットアップコマンドの権限
+    default: op
+  lazeronigokko.command.gui:
+    description: GUIコマンドの権限
+    default: op
