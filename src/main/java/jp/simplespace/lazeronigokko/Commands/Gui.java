@@ -56,15 +56,17 @@ public class Gui implements CommandExecutor, TabCompleter {
 
         //引数が1つのとき
         if (args.length == 1){
-            commands.add("lazerdistance");
+            commands.add("gunselect");
         }
+        /**
         //引数が2つのとき
         else if (args.length == 2){
             //前の引数がレーザー距離のとき
-            if (args[0].equalsIgnoreCase("lazerdistance")){
+            if (args[0].equalsIgnoreCase("gunselect")){
                 commands.add("数値");
             }
         }
+         */
         Collections.sort(commands);
         return commands;
     }
