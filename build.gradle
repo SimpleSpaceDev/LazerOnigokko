@@ -24,6 +24,7 @@ repositories {
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
+    compileOnly 'org.jetbrains:annotations:16.0.2'
 }
 
 compileJava.options.encoding = 'UTF-8'
